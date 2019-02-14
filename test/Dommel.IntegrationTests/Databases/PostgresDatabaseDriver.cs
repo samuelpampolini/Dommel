@@ -25,8 +25,6 @@ namespace Dommel.IntegrationTests
 
         public override string TempDbDatabaseName => "postgres";
 
-        private static readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
-
         protected override async Task CreateDatabase()
         {
             using (var con = GetConnection(TempDbDatabaseName))
@@ -71,7 +69,9 @@ CREATE TABLE IF NOT EXISTS ""Bars"" (""Id"" serial primary key, ""Name"" VARCHAR
 DROP TABLE ""Categories"";
 DROP TABLE ""Products"";
 DROP TABLE ""Orders"";
-DROP TABLE ""OrderLines"";");
+DROP TABLE ""OrderLines"";
+DROP TABLE ""Foos"";
+DROP TABLE ""Bars"";");
                 con.Close();
             }
         }
